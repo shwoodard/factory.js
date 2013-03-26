@@ -7,3 +7,5 @@ rescue LoadError
   end
 end
 
+task :default => 'jasmine:ci'
+
