@@ -37,7 +37,7 @@ describe("When using a Factory", function() {
     });
 
     it("allows a basic numerical sequence", function() {
-      factory.setDefault("id", 1, true);
+      factory.setDefault("id", 1, {sequence: true});
       _.each([1, 2], function(times) {
         expect(JSON.parse(factory.toJson())).toEqual({
           id: times,
@@ -48,9 +48,9 @@ describe("When using a Factory", function() {
     });
 
     it("allows a sequence with a custom funtion", function() {
-      factory.setDefault("name", 1, function(n) {
+      factory.setDefault("name", 1, {sequence: function(n) {
         return "Foo " + n;
-      });
+      }});
 
       _.each([1, 2], function(times) {
         expect(JSON.parse(factory.toJson())).toEqual({
@@ -68,11 +68,11 @@ describe("When using a Factory", function() {
     beforeEach(function() {
       factory = new Factory("factory", function(config) {
         config.setFields(["id", "name", "position"]);
-        config.setDefault("id", 1, true);
-        config.setDefault("name", 1, function(n) {
+        config.setDefault("id", 1, {sequence: true});
+        config.setDefault("name", 1, {sequence: function(n) {
           return "Story " + n;
-        });
-        config.setDefault("position", 1, true);
+        }});
+        config.setDefault("position", 1, {sequence: true});
       });
     });
 
