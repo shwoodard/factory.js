@@ -19,7 +19,7 @@ describe("When using a Factory", function() {
     });
 
     it("it's fields are configurable", function() {
-      var factoryFields = jQuery.map(factory.fields, function (value, key) {
+      var factoryFields = _.map(factory.fields, function (value, key) {
         return key;
       });
       factoryFields = factoryFields.sort();
@@ -38,7 +38,7 @@ describe("When using a Factory", function() {
 
     it("allows a basic numerical sequence", function() {
       factory.setDefault("id", 1, true);
-      jQuery.each([1, 2], function(i, times) {
+      _.each([1, 2], function(times) {
         expect(JSON.parse(factory.toJson())).toEqual({
           id: times,
           name: null,
@@ -52,7 +52,7 @@ describe("When using a Factory", function() {
         return "Foo " + n;
       });
 
-      jQuery.each([1, 2], function(i, times) {
+      _.each([1, 2], function(times) {
         expect(JSON.parse(factory.toJson())).toEqual({
           id: null,
           name: "Foo " + times,
