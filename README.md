@@ -17,7 +17,7 @@ var factory = new Factory("widget", function (config) {
 
   // configure name to be a custom sequence
   config.setDefault("name", 1, {sequence: function (n) {
-    return "Widget " + n;"
+    return "Widget " + n;
   }});
 
   // configure description with a static (string) default)
