@@ -19,8 +19,8 @@
  *      // respondWith "GET", /\/widgets\/\d+/, [200, {}, widget]
  *    });
  *
- *  This is help helpful because widget will have the same id for
- *  POST and GET.
+ *  This is help helpful because widget will have the same attributes,
+ *  such as `id`, for both POST and GET.
  */
 (function () {
   window.Factory = function (name, configFn) { 
