@@ -119,15 +119,10 @@ describe("When using a Factory", function() {
         var typeOfFactoryAsObject = typeof factoryAsObject;
         expect(typeOfFactoryAsObject).toEqual("object");
       });
-      it("you can get the json even if you ask for it as an object", function() {
-        var typeOfJson = typeof factoryAsObject.json();
+
+      it("you can use Factory.asJson to convert the object to json string", function() {
+        var typeOfJson = typeof Factory.asJson(factoryAsObject);
         expect(typeOfJson).toEqual("string");
-      });
-      return it("and you can override the json", function() {
-        expect(JSON.parse(factoryAsObject.json())).toEqual(JSON.parse(factoryAsObject.json()));
-        expect(JSON.parse(factoryAsObject.json({
-          name: "Bas"
-        }))).not.toEqual(JSON.parse(factoryAsObject.json()));
       });
     });
   });
