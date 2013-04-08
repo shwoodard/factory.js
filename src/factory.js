@@ -19,10 +19,17 @@
  *      // respondWith "GET", /\/widgets\/\d+/, [200, {}, widget]
  *    });
  *
- *  This is help helpful because widget will have the same attributes,
- *  such as `id`, for both POST and GET.
+ * This is help helpful because widget will have the same attributes,
+ * such as `id`, for both POST and GET.
  */
 (function () {
+  /**
+   * Construct a Factory.  Allows for configuration.
+   *
+   * @param name [String] - the name of the factory.
+   * @param configFn [Function] - an optional callback.
+   *   Receives the factory to be configured.
+   */
   window.Factory = function (name, configFn) { 
     this._fieldsSet = false;
     this.fields = {};
