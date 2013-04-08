@@ -23,6 +23,7 @@
  * such as `id`, for both POST and GET.
  */
 (function () {
+
   /**
    * Construct a Factory.  Allows for configuration.
    *
@@ -39,16 +40,23 @@
     }
   };
 
+  // Play it safe
   Factory.whiny = true
 
   Factory.prototype = {
+    /**
+     * Call this first!  Set the fields that your
+     * factory knows about.
+     *
+     * @param fields [Array] an array of strings
+     *   indicating the fields for the factory
+     */
     setFields: function (fields) {
       for (var i = 0; i < fields.length; i++) {
         this.fields[fields[i]] = {value: null};
       }
       this._fieldsSet = true;
     },
-
 
     setDefault: function (field, value, options) {
       sequence = options && options.sequence || false;
@@ -71,7 +79,7 @@
       options = options || {};
 
       if(Factory.whiny && !this._fieldsSet) {
-        throw new Error('You must call set fields before generating factory instances');
+        throw new Error('You must call setFields before generating factory instances');
       }
 
       var fields = {};
