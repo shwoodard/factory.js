@@ -36,28 +36,37 @@ describe("When using a Factory", function() {
       });
     });
 
-    it("allows a basic numerical sequence", function() {
-      factory.setDefault("id", 1, {sequence: true});
-      _.each([1, 2], function(times) {
-        expect(JSON.parse(factory.toJson())).toEqual({
-          id: times,
-          name: null,
-          position: null
+    describe("sequences", function () {
+
+      it("allows a basic numerical sequence", function() {
+        factory.setDefault("id", 1, {sequence: true});
+        _.each([1, 2], function(times) {
+          expect(JSON.parse(factory.toJson())).toEqual({
+            id: times,
+            name: null,
+            position: null
+          });
         });
       });
-    });
 
-    it("allows a sequence with a custom funtion", function() {
-      factory.setDefault("name", 1, {sequence: function(n) {
-        return "Foo " + n;
-      }});
+      it("allows a sequence with a custom funtion", function() {
+        factory.setDefault("name", 1, {sequence: function(n) {
+          return "Foo " + n;
+        }});
 
-      _.each([1, 2], function(times) {
-        expect(JSON.parse(factory.toJson())).toEqual({
-          id: null,
-          name: "Foo " + times,
-          position: null
+        _.each([1, 2], function(times) {
+          expect(JSON.parse(factory.toJson())).toEqual({
+            id: null,
+            name: "Foo " + times,
+            position: null
+          });
         });
+      });
+
+      it("allows zero to be the seed value for the sequence", function () {
+        factory.setDefault("position", 0, {sequence: true});
+
+        expect(factory.asObject().position).toEqual(0);
       });
     });
   });

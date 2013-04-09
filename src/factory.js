@@ -104,7 +104,8 @@
 
       if(sequence) {
         this.fields[field].sequence = {};
-        this.fields[field].sequence.value = value || 1;
+        this.fields[field].sequence.value =
+          value == 0 ? 0 : (value || 1);
 
         if(typeof sequence == "function") {
           this.fields[field].sequence.fn = sequence;
