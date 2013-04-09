@@ -40,10 +40,20 @@
     }
   };
 
-  // Play it safe
+  /**
+   * @public
+   *
+   * This will cause the lib to throw an exception
+   * if you try to do setDefault on feild before
+   * calling `setFields`.
+   *
+   * Turn this off in your spec_helper if you prefer!
+   */
   Factory.whiny = true
 
   Factory.prototype = {
+
+    // Public
     /**
      * Call this first!  Set the fields that your
      * factory knows about.
@@ -58,6 +68,37 @@
       this._fieldsSet = true;
     },
 
+    /**
+     * Configure a single fields default.  Allows
+     * for creating sequences for fields.
+     *
+     * Sequences can be enabled like, with passing
+     * `options.sequence` -> true.  This will result
+     * in a simple integer incrementing value.
+     *
+     * Also, `options.sequence` can be a function.
+     * The function receives the current count of
+     * of the sequnce and then can return a calculated
+     * value such as, `"Widget " + n`, where n is the
+     * count passed into the callback.
+     *
+     * For simple string defaults (that don't change),
+     * simply supply the string value and no options;
+     * sequnce is the only currently supported option.
+     *
+     * @param field [Stirng] - the field name for which
+     *   to set the default
+     *
+     * @param value [String|Integer] - if String, the
+     *   static value for the factory's field value.
+     *   if Integer and options.sequence, this will be
+     *   the initial count value for the sequence,
+     *   defaults to 1 (if null or undefined is passed)
+     *
+     * @param options [Object] - can elect for this factory
+     *   field to be a sequence, e.g. {sequence: true}
+     *
+     */
     setDefault: function (field, value, options) {
       sequence = options && options.sequence || false;
 
@@ -103,6 +144,7 @@
       return Factory.asJson(this.asObject.call(this, options));
     },
 
+    //Private
     _setValueForSequence: function (value, field) {
       if(value.sequence.fn) {
         value.value = value.sequence.fn.call(this, value.sequence.value);
