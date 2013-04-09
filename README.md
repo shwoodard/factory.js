@@ -20,7 +20,7 @@ var factory = new Factory("widget", function (config) {
     return "Widget " + n;
   }});
 
-  // configure description with a static (string) default)
+  // configure description with a static (string) default
   config.setDefault("description", "Lorem ipsum");
 });
 ```
