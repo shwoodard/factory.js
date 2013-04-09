@@ -117,6 +117,12 @@
       }
     },
 
+    /**
+     * Return the current Factory snapshot as an object.
+     *
+     * @param options [Object] - overrides for defaults
+     * @return [Object] - the Factory snapshot as an object
+     */
     asObject: function (options) {
       options = options || {};
 
@@ -141,6 +147,13 @@
       return fields;
     },
 
+    /**
+     * Return the factory snapshot as a json string.
+     *
+     * @param options [Object] - overrides for defaults
+     * @return [Object] - the Factory snapshot as a json
+     *   string.
+     */
     toJson: function (options) {
       return Factory.asJson(this.asObject.call(this, options));
     },
@@ -155,6 +168,15 @@
     }
   };
 
+  // Public, Static
+  /**
+   * A utility method to convert factories Factory
+   * snapshots fetched as objects to JSON
+   *
+   * @param object [Object] the object to be converted
+   *   to string json
+   * @return [String] the json value of the object.
+   */
   Factory.asJson = function (object) {
     return JSON.stringify(object);
   }
