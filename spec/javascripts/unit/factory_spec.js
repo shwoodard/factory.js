@@ -6,7 +6,7 @@ describe("When using a Factory", function() {
 
   it("throws an error if you try to generate factory objects without setting fields", function() {
     var factory = new Factory("factory");
-    expect(factory.asObject).toThrow(new Error('You must call set fields before generating factory instances'));
+    expect(factory.asObject).toThrow(new Error('You must call setFields before generating factory instances'));
   });
 
   describe("configuration", function() {
