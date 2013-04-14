@@ -100,6 +100,10 @@
      *
      */
     setDefault: function (field, value, options) {
+      if (!this.fields[field]) {
+        throw new Error('This field is not registered on the factory');
+      }
+
       sequence = options && options.sequence || false;
 
       if(sequence) {

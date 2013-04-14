@@ -9,6 +9,11 @@ describe("When using a Factory", function() {
     expect(factory.asObject).toThrow(new Error('You must call setFields before generating factory instances'));
   });
 
+  it("throws an error if you try to set a default on an unregistered field", function() {
+    var factory = new Factory("factory");
+    expect(function(){factory.setDefault("bad")}).toThrow(new Error('This field is not registered on the factory'));
+  });
+
   describe("configuration", function() {
     var factory = null;
 
